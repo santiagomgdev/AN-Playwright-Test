@@ -1,0 +1,13 @@
+[tool.pytest.ini_options]
+addopts = "--browser chromium --browser firefox --browser webkit"
+base_url = "${BASE_URL}"
+tracing = "retain-on-failure"
+screenshot = "only-on-failure"
+video = "retain-on-failure"
+
+[tool.pytest.ini_options.markers]
+e2e = "End-to-end tests"
+integration = "Integration tests"
+api = "API tests"
+skip_browser = "Skip test for a specific browser"
+only_browser = "Run test only on a specific browser"
