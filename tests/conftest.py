@@ -11,15 +11,6 @@ from fixtures import (
 
 
 @pytest.fixture(scope="session")
-def browser_type_launch_args(browser_type_launch_args: Dict) -> Dict:
-    return {
-        **browser_type_launch_args,
-        "headless": settings.HEADLESS,
-        "slow_mo": settings.SLOW_MO,
-    }
-
-
-@pytest.fixture(scope="session")
 def browser_context_args(browser_context_args: Dict) -> Dict:
     return {
         **browser_context_args,

@@ -1,5 +1,11 @@
 [tool.pytest.ini_options]
-addopts = "--browser chromium --browser firefox"
+addopts = [
+    "--browser", "chromium",
+    "--browser", "firefox",
+    "--screenshot=only-on-failure",
+    "--video=retain-on-failure",
+    "--tracing=retain-on-failure",
+]
 markers = [
     "e2e: End-to-end tests",
     "integration: Integration tests",
@@ -7,8 +13,3 @@ markers = [
     "skip_browser: Skip test for a specific browser",
     "only_browser: Run test only on a specific browser",
 ]
-
-[tool.playwright]
-screenshot = "only-on-failure"
-tracing = "retain-on-failure"
-video = "retain-on-failure"

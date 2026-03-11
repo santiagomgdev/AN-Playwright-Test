@@ -26,19 +26,19 @@ def api_client() -> ApiClient:
 # -----------------------------------------------
 
 @pytest.fixture(scope="session")
-def browser_auth_state(browser: Browser) -> str:
+def browser_auth_state(
+    browser: Browser,
+    browser_context_args: dict,
+) -> str:
     """
     Inicia sesión en la aplicación una vez por sesión de prueba y guarda el estado de autenticación.
     """
-    context = browser.new_context(
-        base_url=settings.BASE_URL,
-        ignore_https_errors=not settings.VERIFY_SSL,
-    )
+    context = browser.new_context(**browser_context_args)
     page = context.new_page()
     login = LoginPage(page)
 
     page.goto(settings.BASE_URL)
-    login.wait_for_load()
+    # login.wait_for_load()
     login.login(settings.AUTH_USERNAME, settings.AUTH_PASSWORD)
 
     context.storage_state(path=AUTH_STATE_PATH)
@@ -50,15 +50,15 @@ def browser_auth_state(browser: Browser) -> str:
 @pytest.fixture
 def authenticated_page(
     browser: Browser,
+    browser_context_args: dict,
     browser_auth_state: str,
 ) -> Generator[Page, None, None]:
     """
     Proporciona una página autenticada para pruebas E2E.
     """
     context: BrowserContext = browser.new_context(
-        base_url=settings.BASE_URL,
         storage_state=browser_auth_state,
-        ignore_https_errors=not settings.VERIFY_SSL,
+        **browser_context_args
     )
     page = context.new_page()
 
