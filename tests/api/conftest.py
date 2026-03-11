@@ -1,0 +1,1 @@
+from fixtures.auth import api_client

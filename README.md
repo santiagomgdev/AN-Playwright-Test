@@ -12,7 +12,7 @@ La estructura general de las pruebas en Playwright se divide en los siguientes a
 page.goto("https://playwright.dev/")
 
 # Ejemplo Nexus
-page.goto("https://???/")
+page.goto("https://app.atlantisnexus.testing.local/vinculaciones")
 ```
 
 - Las pruebas se componen a través de interacciones, los cuales permiten realizar acciones usando [Locators API](https://playwright.dev/python/docs/locators), estos representan una forma de acceder a los elementos de una página.

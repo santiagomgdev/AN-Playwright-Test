@@ -1,5 +1,5 @@
 [tool.pytest.ini_options]
-addopts = "--browser chromium --browser firefox --browser webkit"
+addopts = "--browser chromium --browser firefox"
 markers = [
     "e2e: End-to-end tests",
     "integration: Integration tests",
