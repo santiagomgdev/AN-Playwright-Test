@@ -5,6 +5,8 @@ addopts = [
     "--screenshot=only-on-failure",
     "--video=retain-on-failure",
     "--tracing=retain-on-failure",
+    "--output=reports/test-results",
+    "--html=reports/html/report.html",
 ]
 markers = [
     "e2e: End-to-end tests",
