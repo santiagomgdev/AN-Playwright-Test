@@ -7,7 +7,7 @@ class LoginPage(BasePage):
         super().__init__(page)
         self.input_usuario = page.get_by_role("textbox", name="Usuario")
         self.input_contrasena = page.get_by_role("textbox", name="Contraseña")
-        self.boton_enviar = page.get_by_role("button", name="Iniciar sesión")
+        self.boton_enviar = page.get_by_role("button", name="Aceptar")
 
     def login(self, username: str, password: str) -> None:
         self.input_usuario.fill(username)

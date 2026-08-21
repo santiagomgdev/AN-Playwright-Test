@@ -165,6 +165,15 @@ def test_hu_01_user_completes_onboarding(page, credentials):
 
 ---
 
+## Known Issues
+
+Ver [`docs/known-issues.md`](docs/known-issues.md) — hallazgos de la app real
+(bugs de ruteo, guards inconsistentes, bloqueo de OTP sin bypass de ambiente)
+descubiertos al construir la suite de vinculaciones. Léelo antes de escribir
+pruebas nuevas para las etapas posteriores a validar-identidad.
+
+---
+
 ## Variables de Entorno
 
 ```bash
@@ -193,6 +202,21 @@ playwright install
 # Ejecutar todas las pruebas
 pytest
 
+# -v para ver más detalles en la salida
+pytest -v
+
+# -s para ver la salida de print() en las pruebas
+pytest -s
+
+# -k para ejecutar pruebas que coincidan con un patrón
+pytest -k "login"
+
+# -q para una salida más silenciosa
+pytest -q
+
+# -co para ejecutar pruebas marcadas con un marcador específico
+pytest -co "smoke"
+
 # Ejecutar pruebas por carpeta
 pytest tests/e2e/
 pytest tests/integration/
@@ -217,6 +241,15 @@ pytest --numprocesses auto
 
 # Generar reporte HTML
 pytest --html=reports/html/report.html
+
+# see the browser, one test, one browser
+pytest tests/e2e/user_stories/test_hu03_vinculacion_flujo_hasta_validar_identidad.py --headed --browser chromium --numprocesses 0
+
+# slow motion (milliseconds delay between actions) — much easier to watch                                                                       
+pytest tests/e2e/user_stories/test_hu03_vinculacion_flujo_hasta_validar_identidad.py --headed --browser chromium --numprocesses 0 --slowmo 300
+
+# whole vinculación suite, headed, chromium only, no parallel workers
+pytest tests/e2e/user_stories/ --headed --browser chromium --numprocesses 0 --slowmo 200
 ```
 
 ---
